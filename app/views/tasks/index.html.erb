@@ -1,3 +1,13 @@
 <h1> This is the index to list all Tasks</h1>
-<%= p @tasks %>
-<%= link_to 'Add a new Task', new_path %>
+<ul>
+<% @tasks.each do |t| %>
+<li>
+  <p> Task: <%= t.title %> , completed: <%= t.completed %> </p>
+  <%= link_to "Details", task_path(t.id) %>
+  <%= link_to "Edit", edit_task_path(t.id) %>
+  <%= link_to "Delete", delete_task_path(t), method: :delete, data: { confirm: "Are you sure?" } %>
+</li>
+<% end  %>
+</ul>
+
+<%= link_to 'Add a new Task', new_task_path %>
